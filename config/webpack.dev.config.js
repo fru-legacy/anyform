@@ -62,4 +62,6 @@ const config = {
   }
 };
 
+console.log(lernaAliases());
+
 module.exports = config;
