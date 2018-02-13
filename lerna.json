@@ -1,7 +1,7 @@
 {
   "lerna": "2.8.0",
   "packages": [
-    "*", 
+    "*",
     "collections/*"
   ],
   "commands": {
@@ -9,5 +9,5 @@
       "hoist": true
     }
   },
-  "version": "0.0.0"
+  "version": "0.0.1"
 }

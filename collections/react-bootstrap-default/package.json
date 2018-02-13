@@ -6,9 +6,9 @@
   "author": "Florian Rüberg",
   "license": "MIT",
   "dependencies": {
-    "react-multi-tree": "0.0.2",
     "classnames": "^2.2.5",
-    "react": "^16.2.0"
+    "react": "^16.2.0",
+    "react-multi-tree": "0.0.2"
   },
   "repository": {
     "type": "git",
