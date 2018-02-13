@@ -1,10 +1,40 @@
 {
+  "name": "anyform-monorepo",
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
-    "publish": "lerna publish"
+    "publish": "lerna publish",
+    "start": "webpack-dev-server --config ./config/webpack.dev.config.js --progress --hot --watch --open --env.folder examples/react-hello-world",
+    "build": "npm run build-example",
+    "build-example": "webpack --env.env build --env.folder docs"
   },
   "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.0.2",
+    "babel-loader": "7.1.2",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react-plus": "^1.3.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "json-loader": "^0.5.7",
     "lerna": "^2.8.0",
-    "lerna-alias": "^3.0.1"
-  }
+    "lerna-alias": "^3.0.1",
+    "node-sass": "^4.6.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "3.8.1",
+    "webpack-dev-server": "^2.9.4",
+    "yargs": "10.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fru/anyform.git"
+  },
+  "description": "Make any form - easily",
+  "author": "Florian Rüberg",
+  "license": "MIT"
 }

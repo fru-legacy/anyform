@@ -1,4 +1,11 @@
 {
-  "presets": ["es2015" , "react-plus"],
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      }
+    }],
+    "react-plus"
+  ],
   "plugins": ["babel-plugin-add-module-exports"]
 }

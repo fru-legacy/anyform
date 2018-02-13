@@ -1,0 +1,17 @@
+{
+  "name": "react-bootstrap-default",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "Florian Rüberg",
+  "license": "MIT",
+  "dependencies": {
+    "react-multi-tree": "0.0.2",
+    "classnames": "^2.2.5",
+    "react": "^16.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fru/anyform.git"
+  }
+}
