@@ -57,11 +57,9 @@ const config = {
     port: 3001,
     hot: true,
     historyApiFallback: {
-      index: './' + folder + '/index.html'
+      index: './examples/index.html'
     }
   }
 };
-
-console.log(lernaAliases());
 
 module.exports = config;
