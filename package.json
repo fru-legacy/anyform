@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "postinstall": "lerna bootstrap --hoist",
+    "publish": "lerna publish"
+  },
+  "devDependencies": {
+    "lerna": "^2.8.0",
+    "lerna-alias": "^3.0.1"
+  }
+}
