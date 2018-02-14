@@ -17,9 +17,9 @@ Embed the editor into your app:
 
 ```jsx
 import Anyform from 'anyform-react';
-import components from 'anyform-set-default';
+import set from 'anyform-set-default';
 
-<Anyform.Editor set={components} />
+<Anyform.Editor components={set} />
 ```
 
 
