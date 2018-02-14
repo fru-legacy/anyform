@@ -6,7 +6,7 @@
 
 # Usage
 
-Install anyform and a [component set](https://www.google.com) you like:
+Install anyform and a [component set](https://www.google.com):
 
 ```bash
 npm install -s anyform-react
