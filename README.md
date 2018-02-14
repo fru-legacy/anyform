@@ -19,11 +19,11 @@ npm install -s anyform-set-default
 Embed the editor into your app:
 
 ```jsx
-import Anyform from 'anyform-react';
+import Any from 'anyform-react';
 import set from 'anyform-set-default';
 
 // In the intended render method add:
-<Anyform.Editor components={set} />
+<Any.Editor components={set} />
 ```
 
 ## Content
