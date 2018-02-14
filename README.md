@@ -4,7 +4,7 @@
     <img src="/packages/config/readme_resources/demo1.gif" align="right" width="476px"/>
 </div>
 
-# Usage
+<p><h1>Usage<h1></p>
 
 Install anyform and a [component set](https://www.google.com) you like:
 
