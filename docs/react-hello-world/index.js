@@ -1,4 +1,4 @@
-import { AnimatedNodeList } from 'anyform-react';
+import { AnimatedRoot } from 'anyform-react';
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -19,7 +19,7 @@ class Example extends Component {
 
     render () {
         return <div>
-            <AnimatedNodeList nodes={this.state.data} />
+            <AnimatedRoot nodes={this.state.data} />
             <button onClick={() => {this.setState({data: this.shuffle()})}}>Shuffle</button>
         </div>;
     }
