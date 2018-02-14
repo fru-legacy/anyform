@@ -4,7 +4,7 @@
     <img src="/packages/config/readme_resources/demo1.gif" align="right" width="476px"/>
 </div>
 
-<h1 margin-top="30px;">Usage</h1>
+# Usage
 
 Install anyform and a [component set](https://www.google.com) you like:
 
@@ -19,23 +19,17 @@ Embed the editor into your app:
 import Anyform from 'anyform-react';
 import set from 'anyform-set-default';
 
+// In your react render method:
 <Anyform.Editor components={set} />
+
 ```
 
+## Content
 
-
-Render an input component dynamically & pass data:
-
-```jsx
-import Anyform from 'anyform-react';
-import components from 'anyform-set-default';
-
-var data = { msg: 'Hello, World' };
-var form = [{ type: 'input', value: 'msg' }];
-
-<Anyform form={form} 
-         data={data} 
-         set={components} />
-```
-
-
+* [Common usage](#common-usage)
+* [Installation](#installation)
+    * [Node projects](#node-projects)
+    * [Web projects](#web-projects)
+* [Parameters](#parameters)
+    * [Aliases](#aliases)
+    * [Sequence](#sequence)
