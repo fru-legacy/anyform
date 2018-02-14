@@ -4,9 +4,7 @@
     <img src="/packages/config/readme_resources/demo1.gif" align="right" width="476px"/>
 </div>
 
-<div>
-    <img src="/packages/config/readme_resources/header2.png"  width="200px"/>
-</div>
+# Usage
 
 Install anyform and a [component set](https://www.google.com) you like:
 
