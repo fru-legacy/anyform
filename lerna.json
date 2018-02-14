@@ -1,8 +1,8 @@
 {
   "lerna": "2.8.0",
   "packages": [
-    "*",
-    "collections/*"
+    "packages/*",
+    "packages/collections/*"
   ],
   "commands": {
     "bootstrap": {

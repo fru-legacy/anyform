@@ -3,7 +3,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
     "publish": "lerna publish",
-    "start": "webpack-dev-server --config ./config/webpack.dev.config.js --progress --hot --watch --open --env.folder examples/react-hello-world",
+    "start": "webpack-dev-server --config ./packages/config/webpack.dev.config.js --progress --hot --watch --open --env.folder ../examples/react-hello-world",
     "build": "npm run build-example",
     "build-example": "webpack --env.env build --env.folder docs"
   },

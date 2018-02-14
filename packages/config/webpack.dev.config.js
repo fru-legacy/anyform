@@ -20,8 +20,21 @@ const config = {
     rules: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ["env", {
+                "targets": {
+                  "browsers": ["last 2 versions", "safari >= 7"]
+                }
+              }],
+              "react-plus"
+            ],
+            plugins: ["babel-plugin-add-module-exports"]
+          }
+        }
       },
       {
         test: /\.scss$/,

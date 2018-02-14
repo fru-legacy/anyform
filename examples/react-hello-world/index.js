@@ -1,2 +1,2 @@
-import test from 'react-anyform-dynamic';
+import test from 'react-anyform';
 console.log(test);
