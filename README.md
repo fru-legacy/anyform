@@ -4,8 +4,9 @@
 
 # Usage
 
+Install anyform and a component set you like:
+
 ```bash
-npm install -s react-anyform
-npm install -s react-anyform-collection-default
+npm install -s anyform anyform-set-default
 ```
 
