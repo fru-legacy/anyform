@@ -5,6 +5,7 @@
 # Usage
 
 ```bash
-npm install -s react-anyform react-anyform-collection-default
+npm install -s react-anyform
+npm install -s react-anyform-collection-default
 ```
 
