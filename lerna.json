@@ -2,11 +2,15 @@
   "lerna": "2.8.0",
   "packages": [
     "packages/*",
-    "packages/anyform-sets/*"
+    "packages/anyform-sets/*",
+    "docs/*"
   ],
   "commands": {
     "bootstrap": {
       "hoist": true
+    },
+    "publish": {
+      "ignore": "docs/*"
     }
   },
   "version": "0.0.4"

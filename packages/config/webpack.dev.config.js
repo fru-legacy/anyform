@@ -70,7 +70,7 @@ const config = {
     port: 3001,
     hot: true,
     historyApiFallback: {
-      index: './examples/index.html'
+      index: './docs/webpack.html'
     }
   }
 };
