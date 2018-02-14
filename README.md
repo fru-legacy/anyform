@@ -22,9 +22,8 @@ Embed the editor into your app:
 import Anyform from 'anyform-react';
 import set from 'anyform-set-default';
 
-// In your react render method:
+// In the intended render method:
 <Anyform.Editor components={set} />
-
 ```
 
 ## Content
