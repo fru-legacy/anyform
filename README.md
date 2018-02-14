@@ -7,6 +7,7 @@
 Install anyform and a component set you like:
 
 ```bash
-npm install -s anyform anyform-set-default
+npm install -s anyform
+npm install -s anyform-set-default
 ```
 
