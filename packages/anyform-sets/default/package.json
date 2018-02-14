@@ -1,5 +1,5 @@
 {
-  "name": "react-anyform",
+  "name": "anyform-set-default",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,12 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^16.2.0",
-    "react-multi-tree": "0.0.2"
+    "react-dom": "^16.2.0",
+    "react-dropzone": "^4.2.8",
+    "react-froala-wysiwyg": "^2.7.5",
+    "react-multi-tree": "0.0.2",
+    "react-select": "^1.2.1",
+    "reactstrap": "^5.0.0-beta"
   },
   "repository": {
     "type": "git",
