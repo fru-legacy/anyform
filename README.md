@@ -4,7 +4,7 @@
 
 # Usage
 
-Install anyform and a component set you like:
+Install anyform and a [component set](https://www.google.com) you like:
 
 ```bash
 npm install -s anyform
