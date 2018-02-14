@@ -3,7 +3,7 @@
         <img src="/packages/config/readme_resources/header.png" align="right" height="95px"/>
     </a>
     <a href="goto_demo_readme">
-        <img src="/packages/config/readme_resources/demo1.gif" align="right" width="476px"/>
+        <img src="/packages/config/readme_resources/demo2.gif" align="right" width="476px"/>
     </a>
 </div>
 
