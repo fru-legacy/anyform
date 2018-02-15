@@ -36,43 +36,22 @@ export class AnimatedRoot extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {time: 0, epoch: 0, startms: 0, lengthms: 300};
-        this.state.before = {};
-        this.state.target = {};
-        this.continueCountdown();
+        this.state = {time: 0, epoch: 0, startms: 0};
     }
 
     render = () => <AnimatedNodeList 
             nodes={this.props.nodes} root={this}
             epoch={this.state.epoch} time={this.state.time} />;
 
-    getStyleDep(id) {
-        return this.getStyle(id, this.state.before[id], this.state.target[id]);
-    }
-
-    getStyle(id, from, to) {
-        // TODO calculate from state
-        if (!from || !to) return {left: 0, top: 0};
-
-        let factor = easing.easeInOutCubic(this.state.time / this.state.lengthms);
-        return {
-            left: (from.x - to.x) * factor,
-            top:  (from.y - to.y) * factor,
-        }
-    }
-
-    updateRect(id, rect) {
-        this.state.target[id] = rect;
-    }
-
     componentWillReceiveProps(nextProps) {
         // Move current rects to leagcy and start state countdown
         this.setState({
             before: Object.assign({}, this.state.target),
-            time: this.state.lengthms,
+            time: LENGTH_ANIMATION_MS,
             startms: Date.now(),
             epoch: this.state.epoch + 1
         });
+        this.continueCountdown();
     }
 
     continueCountdown() {
@@ -80,11 +59,10 @@ export class AnimatedRoot extends Component {
             if (this.state.time > 0.0) {
                 
                 let diff = Date.now() - this.state.startms;
-                let time = Math.max(0, this.state.lengthms - diff);
+                let time = Math.max(0, LENGTH_ANIMATION_MS - diff);
                 this.setState({ time });
+                this.continueCountdown();
             }
-
-            this.continueCountdown()
         });
     }
 }
@@ -97,20 +75,21 @@ class AnimatedNodeList extends Component {
     }
 
     getAnimated(props, node) {
-        let id = this.getId(node);
-        return <Animated key={id} id={id} {...props}><input value={node.value} /></Animated>;
+        return <Animated {...props}>
+            <input value={node.value} />
+        </Animated>;
     }
 
     getId = (node) => node.id;
 
     renderNode(props, node) {
-        var input = this.getAnimated(props, node);
+        var children, element = this.getAnimated(props, node);
         
-        if (!node.contains) return input;
-        let children = <div style={{marginLeft: '20px'}}>
+        if (node.contains) children = <div style={{marginLeft: '20px'}}>
             <AnimatedNodeList {...this.props} nodes={node.contains}  />
         </div>;
-        return input; //[input, children];
+        
+        return <div key={this.getId(node)}>{element}{children}</div>
     }
 }
 
@@ -130,8 +109,8 @@ class Animated extends Component {
         if (nextProps.epoch !== this.props.epoch) {
             if (this.state.from && this.state.offset) {
 
-                let x = this.from.x + this.offset.x;
-                let y = this.from.y + this.offset.y;
+                let x = this.state.from.x - this.state.offset.x;
+                let y = this.state.from.y - this.state.offset.y;
 
                 this.setState({ from: {x, y}, offset: null });
             }   
@@ -164,15 +143,5 @@ class Animated extends Component {
                 this.setState({ offset: { x, y }});
             }
         }
-
-        
-        // calculate offset:
-        // time, from 
-
-
-        //this.props.root.updateRect(this.props.id, wrapper.getBoundingClientRect());
     }
-
-    //componentDidUpdate = () => this.notifyRootOfPosition()
-    //componentDidMount = () => this.notifyRootOfPosition()
 }
