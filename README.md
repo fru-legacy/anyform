@@ -25,6 +25,7 @@ import set from 'anyform-set-default';
 // In the intended render method add:
 <Any.Editor components={set} />
 ```
+<br />
 
 ## Content
 
