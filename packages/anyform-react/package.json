@@ -6,10 +6,14 @@
   "author": "Florian Rüberg",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.0.0",
     "classnames": "^2.2.5",
+    "jquery": "^3.3.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-multi-tree": "0.0.2"
+    "react-multi-tree": "0.0.2",
+    "react-popper": "^0.8.2",
+    "reactstrap": "^5.0.0-beta"
   },
   "repository": {
     "type": "git",
