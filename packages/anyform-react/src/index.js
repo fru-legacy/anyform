@@ -44,7 +44,7 @@ export class AnimatedRoot extends Component {
             epoch={this.state.epoch} time={this.state.time} />;
 
     componentWillReceiveProps(nextProps) {
-        // Move current rects to leagcy and start state countdown
+        // Start animation countdown
         this.setState({
             before: Object.assign({}, this.state.target),
             time: LENGTH_ANIMATION_MS,
@@ -107,10 +107,10 @@ class Animated extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.epoch !== this.props.epoch) {
-            if (this.state.from && this.state.offset) {
+            if (this.state.to && this.state.offset) {
 
-                let x = this.state.from.x - this.state.offset.x;
-                let y = this.state.from.y - this.state.offset.y;
+                let x = this.state.to.x + this.state.offset.x;
+                let y = this.state.to.y + this.state.offset.y;
 
                 this.setState({ from: {x, y}, offset: null });
             }   
@@ -131,7 +131,7 @@ class Animated extends Component {
 
         if (this.props.time === 0 || !this.state.from) {
             if (this.state.offset || !this.state.from) {
-                this.setState({ from: to, offset: null });
+                this.setState({ from: to, to, offset: null });
             }
 
         } else {
@@ -140,7 +140,7 @@ class Animated extends Component {
             let y = (this.state.from.y - to.y) * factor;
 
             if (!this.state.offset || this.state.offset.x !== x || this.state.offset.y !== y) {
-                this.setState({ offset: { x, y }});
+                this.setState({ offset: { x, y }, to });
             }
         }
     }
