@@ -30,11 +30,12 @@ var easing = {
     easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 };
 
+const LENGTH_ANIMATION_MS = 300;
+
 export class AnimatedRoot extends Component {
 
     constructor(props) {
         super(props);
-        // TODO add current, stop jumps
         this.state = {time: 0, epoch: 0, startms: 0, lengthms: 300};
         this.state.before = {};
         this.state.target = {};
@@ -69,7 +70,8 @@ export class AnimatedRoot extends Component {
         this.setState({
             before: Object.assign({}, this.state.target),
             time: this.state.lengthms,
-            startms: Date.now()
+            startms: Date.now(),
+            epoch: this.state.epoch + 1
         });
     }
 
@@ -108,7 +110,7 @@ class AnimatedNodeList extends Component {
         let children = <div style={{marginLeft: '20px'}}>
             <AnimatedNodeList {...this.props} nodes={node.contains}  />
         </div>;
-        return [input, children];
+        return input; //[input, children];
     }
 }
 
@@ -119,23 +121,58 @@ class Animated extends Component {
     }
 
     render() {
-        return <div ref="wrapper">
+        return <div ref={(n) => this.recieveBoundingRect(n)}>
             <div style={this.getStyle()}>{this.props.children}</div>
         </div>;
     }
 
-    getStyle() {
-        return {
-            position: 'relative',
-            ...this.props.root.getStyleDep(this.props.id)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.epoch !== this.props.epoch) {
+            if (this.state.from && this.state.offset) {
+
+                let x = this.from.x + this.offset.x;
+                let y = this.from.y + this.offset.y;
+
+                this.setState({ from: {x, y}, offset: null });
+            }   
         }
     }
 
-    notifyRootOfPosition() {
-        let wrapper = ReactDOM.findDOMNode(this.refs.wrapper);
-        this.props.root.updateRect(this.props.id, wrapper.getBoundingClientRect());
+    getStyle() {
+        if (this.state.offset) return {
+            position: 'relative',
+            left: this.state.offset.x,
+            top:  this.state.offset.y
+        };
     }
 
-    componentDidUpdate = () => this.notifyRootOfPosition()
-    componentDidMount = () => this.notifyRootOfPosition()
+    recieveBoundingRect(wrapper) {
+        if (!wrapper) return;
+        let to = wrapper.getBoundingClientRect();
+
+        if (this.props.time === 0 || !this.state.from) {
+            if (this.state.offset || !this.state.from) {
+                this.setState({ from: to, offset: null });
+            }
+
+        } else {
+            let factor = easing.easeInOutCubic(this.props.time / LENGTH_ANIMATION_MS);
+            let x = (this.state.from.x - to.x) * factor;
+            let y = (this.state.from.y - to.y) * factor;
+
+            if (!this.state.offset || this.state.offset.x !== x || this.state.offset.y !== y) {
+                this.setState({ offset: { x, y }});
+            }
+        }
+
+        
+        // calculate offset:
+        // time, from 
+
+
+        //this.props.root.updateRect(this.props.id, wrapper.getBoundingClientRect());
+    }
+
+    //componentDidUpdate = () => this.notifyRootOfPosition()
+    //componentDidMount = () => this.notifyRootOfPosition()
 }
