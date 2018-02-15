@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-
 var easing = {
     // no easing, no acceleration
     linear: function (t) { return t },
@@ -31,28 +30,33 @@ var easing = {
     easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 };
 
-
 export class AnimatedRoot extends Component {
 
     constructor(props) {
         super(props);
         // TODO add current, stop jumps
-        this.state = {time: 0, startms: 0, lengthms: 300, before: {}, target: {}};
+        this.state = {time: 0, epoch: 0, startms: 0, lengthms: 300};
+        this.state.before = {};
+        this.state.target = {};
         this.continueCountdown();
     }
 
-    render() {
-        return <AnimatedNodeList nodes={this.props.nodes} root={this} time={this.state.time} />;
+    render = () => <AnimatedNodeList 
+            nodes={this.props.nodes} root={this}
+            epoch={this.state.epoch} time={this.state.time} />;
+
+    getStyleDep(id) {
+        return this.getStyle(id, this.state.before[id], this.state.target[id]);
     }
 
-    getStyle(id) {
+    getStyle(id, from, to) {
         // TODO calculate from state
-        if (!this.state.before[id] || !this.state.target[id]) return {left: 0, top: 0};
+        if (!from || !to) return {left: 0, top: 0};
 
         let factor = easing.easeInOutCubic(this.state.time / this.state.lengthms);
         return {
-            left: (this.state.before[id].x - this.state.target[id].x) * factor,
-            top: (this.state.before[id].y - this.state.target[id].y) * factor,
+            left: (from.x - to.x) * factor,
+            top:  (from.y - to.y) * factor,
         }
     }
 
@@ -64,7 +68,7 @@ export class AnimatedRoot extends Component {
         // Move current rects to leagcy and start state countdown
         this.setState({
             before: Object.assign({}, this.state.target),
-            time: 1.0,
+            time: this.state.lengthms,
             startms: Date.now()
         });
     }
@@ -73,8 +77,9 @@ export class AnimatedRoot extends Component {
         window.requestAnimationFrame(() => {
             if (this.state.time > 0.0) {
                 
-                let dif = Date.now() - this.state.startms;
-                this.setState({time: Math.max(0, this.state.lengthms - dif)});
+                let diff = Date.now() - this.state.startms;
+                let time = Math.max(0, this.state.lengthms - diff);
+                this.setState({ time });
             }
 
             this.continueCountdown()
@@ -108,6 +113,11 @@ class AnimatedNodeList extends Component {
 }
 
 class Animated extends Component {
+    constructor()  {
+        super();
+        this.state = { offset: null, from: null };
+    }
+
     render() {
         return <div ref="wrapper">
             <div style={this.getStyle()}>{this.props.children}</div>
@@ -117,7 +127,7 @@ class Animated extends Component {
     getStyle() {
         return {
             position: 'relative',
-            ...this.props.root.getStyle(this.props.id)
+            ...this.props.root.getStyleDep(this.props.id)
         }
     }
 
