@@ -3,23 +3,37 @@ import { AnimatedRoot } from 'anyform-react';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+var data = [
+    { type: 'header', contains: [
+        { type: 'h3', text: 'Project name' },
+        { type: 'nav', contains: [{
+            multi: [
+                {type: 'nav-item', text: 'Home', active: true},
+                {type: 'nav-item', text: 'About'},
+                {type: 'nav-item', text: 'Contact'}
+            ]
+        }] },
+    ]},
+    { type: 'jumbotron', header: 'Jumbotron heading', contains: [
+        { type: 'p', text: 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.' },
+        { type: 'button', text: 'Sign up today' }
+    ]},
+    { type: 'row', contains: [
+        { type: 'section', header: 'Subheading', content: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.' },
+        { type: 'section', header: 'Subheading', content: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.' },
+        { type: 'section', header: 'Subheading', content: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.' },
+        { type: 'section', header: 'Subheading', content: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.' },
+        { type: 'section', header: 'Subheading', content: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.' },
+        { type: 'section', header: 'Subheading', content: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.' }
+    ]},
+    { type: 'footer', text: '&copy; Company 2017' }
+];
+
 class Example extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { 
-            data: [
-                {id: 1, value: '1'},
-                {id: 2, value: '2'},
-                {id: 3, value: '3', contains: [
-                    {id: 4, value: '4'},
-                    {id: 5, value: '5'},
-                    {id: 6, value: '6'},
-                    {id: 7, value: '7'},
-                ]}, 
-                {id: 8, value: '8'},
-            ]
-        };
+        this.state = { data };
     }
 
     render () {

@@ -5,24 +5,37 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
 import { Button } from 'reactstrap';
 
+function renderExample(props, node) {
+    var header = <div class="header clearfix">
+    <nav>
+        <ul class="nav nav-pills float-right">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+        </li>
+        </ul>
+    </nav>
+    <h3 class="text-muted">Project name</h3>
+    </div>;
+    return header;
+}
+
+
+// header -> nav (single row) -> nav-item h3
+// jumbotron
+// row -> section 
+// footer
+
+
+
 let Example = (props) => {
     return <div class="container">
-        <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills float-right">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">Project name</h3>
-        </div>
+        
 
         <div class="jumbotron">
         <h1 class="display-3">Jumbotron heading</h1>
